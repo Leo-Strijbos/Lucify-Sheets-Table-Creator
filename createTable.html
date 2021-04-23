@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    
+    <style>
+    form { padding-left: 10%; padding-right: 10%} 
+
+    button { margin-top: .5em; } 
+
+    p {color: rgb(100, 100, 100);}
+
+    input {
+      border: 1px solid rgb(98,210,151);
+    }
+
+    .includeAvg {
+      border: 1px solid rgb(98,210,151);
+    }
+
+    .slider {
+        width:100%;
+        height:20px;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        display:flex;
+        align-items:center;
+      }
+      .slider p {
+        font-size:18px;
+        font-weight:600;
+        font-family:sans-serif;
+        padding-left:20px;
+        color:rgb(98,210,151);
+      }
+      .slider input[type="range"] {
+        -webkit-appearance:none !important;
+        width:250px;
+        height:1px;
+        background:rgb(98,210,151);
+        border:none;
+        outline:none;
+      }
+      .slider input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance:none !important;
+        width:20px;
+        height:20px;
+        background:#f5f5f5;
+        border:2px solid rgb(98,210,151);
+        border-radius:50%;
+        cursor:pointer;
+      }
+      .slider input[type="range"]::-webkit-slider-thumb:hover {
+        background:rgb(98,210,151);
+      }
+    </style>
+    <script>
+      function createTable() {
+        if (document.getElementById("indepVar").value == null) {
+          var independent = "";
+        } else {
+          var independent = document.getElementById("indepVar").value;
+        }
+        if (document.getElementById("depVar").value == null) {
+          var dependent = "";
+        } else {
+          var dependent = document.getElementById("depVar").value;
+        }
+        if (document.getElementById('includeAvg').checked == true) {
+          var check = true;
+        } else {
+          check = false;
+        }
+        
+        google.script.run.createBasicTable(independent, dependent, rangeValue.innerText, check, parseInt(rowValue.innerText));
+      }
+      function goHome(){
+        google.script.run.goHome();
+      } 
+    </script>
+  </head>
+  <body>
+    <form>
+      
+      <h4>Step 2: Choose your variables</h4>
+      <p>
+        Enter your independent variable
+      </p>
+      <div style="display: flex;">
+        <input type='text' id="indepVar" style="width: 100%;">
+      </div>
+      <p>
+        Enter your dependent variable
+      </p>
+      <div style="display: flex;margin-bottom: 10px;">
+        <input type='text' id="depVar" style="width: 100%;">
+      </div>
+      <div>
+        <input type="checkbox" id="includeAvg"
+         checked>
+        <label for="includeAvg">Include average</label>
+      </div>
+      <h4>Step 3: Choose the number of trials</h4>
+      <div class="slider" style="width: 100%;padding-top: 20px;">
+        <input type="range" min="1" max="10" value="3" oninput="rangeValue.innerText = this.value">
+        <p id="rangeValue">3</p>
+      </div>
+      <h4>Step 4: Choose the number of rows of data</h4>
+      <div class="slider" style="width: 100%;padding-top: 20px;">
+        <input type="range" min="1" max="50" value="10" oninput="rowValue.innerText = this.value">
+        <p id="rowValue">10</p>
+      </div>
+      <button onclick="createTable()" style="border: 1px solid rgb(23, 158, 55);color: white; background: rgb(23, 158, 55);"> + Create table</button>
+    </form>
+  </body>
+</html>
