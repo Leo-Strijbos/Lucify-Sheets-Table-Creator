@@ -3,11 +3,11 @@ A school project made for design. 🏫 It is a google suite add on, built specif
 
 
 ## To use:
- → Create new spreadsheet
- → Navigate to tools > script editor
-<ul> → Create new files according to the files above
-<ul> → Copy-paste the code into those files, and save
-<ul> → Refresh the spreadsheets tab, and you should see the Lucify element, in menu bar
+ → Create new spreadsheet<br>
+ → Navigate to tools > script editor<br>
+ → Create new files according to the files above<br>
+ → Copy-paste the code into those files, and save<br>
+ → Refresh the spreadsheets tab, and you should see the Lucify element, in menu bar<br>
 
 
 ![Lucify when set up properly.](lucify.gif)
